@@ -13,7 +13,7 @@ class CompositeTask(ITask):
         super().__init__(name)
         self.subtasks: list[ITask] = []
 
-    def add_task(self, subtask:ITask):
+    def add_subtask(self, subtask:ITask):
         self.subtasks.append(subtask)
 
     def get_detail(self):
@@ -27,3 +27,6 @@ class CompositeTask(ITask):
 
     def mark_complete(self):
         self.completed = True
+        if self.completed:
+            for subtask in self.subtasks:
+                subtask.completed = True
